@@ -12,17 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to GitHub Pages
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.LEARNING_EN_TOKEN }}
-        run: |
-          # HTMLファイルに環境変数を注入
-          sed -i "s/API_KEY: ''/API_KEY: '${{ env.API_KEY }}'/g" index.html
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "20" # Node.js のバージョンを20に更新
 
-          # GitHub Pagesにデプロイ
-          git config --global user.name 'MariNakamura'
-          git config --global user.email 'nakamura@incubatefund.com'
-          git add index.html
-          git commit -m "Inject env vars"
-          git push
+      - name: Create env file
+        run: |
+          echo "const CONFIG = { API_KEY: '${{ secrets.API_KEY }}' };" > public/config.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.LEARNING_EN_TOKEN }}
+          API_KEY: ${{ secrets.API_KEY }} # GitHub SecretsからAPIキーを取得
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
