@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: "20" # Node.js のバージョンを20に更新
 
+      - name: Create public directory
+        run: mkdir -p public # publicディレクトリがなければ作成
+
       - name: Create env file
         run: |
           echo "const CONFIG = { API_KEY: '${{ secrets.API_KEY }}' };" > public/config.js
