@@ -1,0 +1,67 @@
+/* Google Fontsからインポート */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Raleway:wght@400;700&display=swap');
+
+:root {
+  --main-color: #73c2d6;
+  --main-color-light: #b3e0ec;
+  --main-color-dark: #389cb4;
+  --background-color: #f2fafc;
+  --text-color: #333;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  color: var(--main-color-dark);
+  text-shadow: 2px 2px 0 var(--main-color-light);
+}
+
+#instructions {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+}
+
+button:hover {
+  background-color: var(--main-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+#transcript, #response {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  white-space: pre-wrap;
+  font-size: 18px;
+}
