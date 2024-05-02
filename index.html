@@ -21,12 +21,21 @@
     <div id="response"></div>
   </main>
   <script>
+    window.env = {
+      API_KEY: ''
+    }
+  </script>
+
+  <script>
     // 音声認識の設定
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)(); //音声認識API
     recognition.lang = 'en-US'; //英語に設定
     recognition.continuous = false; //話終わった時点で認識を停止
     recognition.interimResults = false; //中間部分も認識不要
-    const API_KEY = process.env.API_KEY; //流出厳禁！！！！
+    const env = { ...window.env };
+    env.API_KEY = '{{ secrets.API_KEY }}';
+    const API_KEY = env.API_KEY
+    // const API_KEY = process.env.API_KEY; //流出厳禁！！！！
 
     // 会話履歴を保持する systemでAIに人格を与える
     let conversationHistory = [
